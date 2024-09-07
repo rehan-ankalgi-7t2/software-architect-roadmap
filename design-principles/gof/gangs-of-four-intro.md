@@ -53,3 +53,12 @@ There are 11 behavioral design patterns defined in the GoF design patterns.
 | Interpreter | defines a grammatical representation for a language and provides an interpreter to deal with this grammar. |
 | Iterator | used to provide a standard way to traverse through a group of Objects. |
 | Memento | The memento design pattern is used when we want to save the state of an object so that we can restore later on. |
+
+## Which Ones to Focus on First?
+**Creational**: Singleton, Factory Method, Builder
+**Structural**: Adapter, Decorator, Facade
+**Behavioral**: Strategy, Observer, Command
+
+These design patterns are practical and widely applicable in many software development projects, especially in web development, where you often face the need for flexible and scalable architectures.
+
+**Note**:If you're working on *React/Node.js/Django projects*, focus on patterns like Observer, `Factory`, `MVC`, and `Strategy`, as these are highly relevant to frameworks and libraries you likely use.
