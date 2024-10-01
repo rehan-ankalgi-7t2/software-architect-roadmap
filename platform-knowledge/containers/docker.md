@@ -32,3 +32,14 @@
 
 ### Port mappings
 > ports actively used by containerized app should be exposed and mapped to a port on the host system
+```bash
+docker run -it -p 6000:9000 mailhog
+```
+- `6000`: system port
+- `9000`: container app port
+
+### Environment variables
+```bash
+docker run -it -p 1025:1025 -e key=value -e key=value -e key=value mailhog
+```
+- `-e` flag indicates env variable
