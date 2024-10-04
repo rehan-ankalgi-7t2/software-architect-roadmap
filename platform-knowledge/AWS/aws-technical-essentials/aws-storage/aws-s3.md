@@ -9,7 +9,7 @@ Amazon S3 is an object storage service. Object storage stores data in a flat str
 
 # **Amazon S3 concepts**
 
-!https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1720972800/kjTISSVDPO9bHUNsksf1gg/tincan/7b5246b3e4dcf41ee9510fd1863163b18f6b0358/assets/295g13cRIaMQIRKc_J5XS-4bErHuFtWRy.png
+![](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1720972800/kjTISSVDPO9bHUNsksf1gg/tincan/7b5246b3e4dcf41ee9510fd1863163b18f6b0358/assets/295g13cRIaMQIRKc_J5XS-4bErHuFtWRy.png)
 
 In Amazon S3, you store your objects in containers called buckets. You can’t upload an object, not even a single photo, to Amazon S3 without creating a bucket first. When you store an object in a bucket, the combination of a bucket name, key, and version ID uniquely identifies the object.
 
@@ -126,17 +126,9 @@ If you enable versioning for a bucket, Amazon S3 automatically generates a uniqu
 
 By using versioning-enabled buckets, you can recover objects from accidental deletion or overwrite. The following are examples:
 
-- 
+- Deleting an object does not remove the object permanently. Instead, Amazon S3 puts a marker on the object that shows that you tried to delete it. If you want to restore the object, you can remove the marker and the object is reinstated.
     
-    bullet
-    
-    Deleting an object does not remove the object permanently. Instead, Amazon S3 puts a marker on the object that shows that you tried to delete it. If you want to restore the object, you can remove the marker and the object is reinstated.
-    
-- 
-    
-    bullet
-    
-    If you overwrite an object, it results in a new object version in the bucket. You still have access to previous versions of the object.
+- If you overwrite an object, it results in a new object version in the bucket. You still have access to previous versions of the object.
     
 
 **Versioning states**
