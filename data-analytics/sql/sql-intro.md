@@ -61,7 +61,7 @@ Relational Database Management System (RDBMS) concepts form the foundation of ma
 
 Understanding these fundamental concepts of RDBMS is essential for designing efficient database schemas, writing optimized SQL queries, and ensuring data integrity and security in applications.
 
-## ACID Principles
+## ACID Principles 🧪
 
 ACID is an acronym that represents a set of properties that guarantee reliable processing of database transactions. These properties ensure the consistency and integrity of transactions in a database system. The ACID properties are:
 
