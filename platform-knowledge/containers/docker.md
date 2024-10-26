@@ -3,8 +3,8 @@
 > ### What is Docker?
 > Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.
 
-> ### Why use Docker?
-> Docker streamlines the development lifecycle by allowing developers to work in standardized environments using local containers which provide your applications and services. Containers are great for continuous integration and continuous delivery (CI/CD) workflows.
+### Why use Docker?
+- Docker streamlines the development lifecycle by allowing developers to work in standardized environments using local containers which provide your applications and services. Containers are great for continuous integration and continuous delivery (CI/CD) workflows.
 - Environment differences
 - Environemnt replication Problem across developer and other machines
 
