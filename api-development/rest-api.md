@@ -407,4 +407,45 @@ Adhering to these best practices can contribute to the creation of a robust, use
 - use plurals as route names ex: /posts
 - hyphenate the complicated route names
 
-## 2.
+## 2.Improper Use of HTTP Methods
+- Use GET for retrieval.
+- Use POST for creating resources.
+- Use PUT for full updates or creation if the resource doesn't exist.
+- Use PATCH for partial updates.
+- Use DELETE for removing resources.
+## 3. Not Versioning the API
+- Include versioning in the URI (e.g., /api/v1/resource) or headers.
+- Use semantic versioning to indicate changes.
+## 4. Ignoring Error Handling
+- Use meaningful HTTP status codes (e.g., 400 for bad requests, 404 for missing resources).
+- Provide detailed error messages with error codes and descriptions.
+- Use a consistent error response structure.
+## 5. Lack of Pagination, Filtering, and Sorting
+- Use query parameters for pagination (e.g., ?page=1&limit=20).
+- Enable filtering and sorting with query parameters (e.g., ?filter=name&sort=asc).
+## 6. Ignoring Statelessness
+- Design APIs to be stateless, where each request contains all necessary information.
+- Use tokens for authentication (e.g., JWT).
+## 7. Improper Use of HTTP Status Codes
+- Return appropriate codes: 201 for creation, 204 for successful deletions, 400 for bad requests, 401 for unauthorized, and 500 for server errors.
+## 8. No Proper Documentation
+- Use tools like Swagger or OpenAPI for comprehensive and interactive documentation.
+- Update the documentation as the API evolves.
+## 9. Security Missteps
+- Always use HTTPS for secure communication.
+- Implement authentication (OAuth 2.0, API keys) and input validation.
+- Sanitize inputs to prevent SQL injection and XSS attacks.
+## 10. Overloading Endpoints
+- Follow a single responsibility principle for endpoints.
+- Split logic into different endpoints for clarity and maintainability.
+## 11. Ignoring Caching
+- Use caching headers (e.g., Cache-Control, ETag) to improve performance.
+Implement client-side caching strategies.
+## 12. Lack of Consistency
+- Standardize naming conventions and response structures.
+- Use tools like linters or API style guides to enforce consistency.
+## 13. Not Using Hypermedia (HATEOAS)
+- Include links in responses for discoverability (e.g., next, previous, related).
+## 14. No Rate Limiting
+- Implement rate limiting with headers like X-RateLimit-Limit and X-RateLimit-Remaining.
+- Return 429 Too Many Requests for exceeded limits.
