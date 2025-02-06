@@ -32,6 +32,7 @@ RBAC is a widely used access control model that grants permissions based on the 
 
 ### 2. **Attribute-Based Access Control (ABAC)**
 ABAC grants permissions based on **attributes** of the user, resource, action, or environment.
+also known as Policy Based Access control and Claims Based Access Control
 
 #### **How ABAC Works:**
 - Instead of roles, **attributes** are used to define access.
