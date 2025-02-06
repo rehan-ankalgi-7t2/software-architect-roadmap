@@ -168,6 +168,4 @@ OAuth 2.0 is an **authorization protocol** used in API-based authentication (e.g
 - **Rule-Based Access** is useful for **system-level policies**.
 - **OAuth 2.0** is common in **API authentication**.
 
-If you are building an enterprise application, **RBAC** is a good starting point. If you need **dynamic access policies**, **ABAC** is the better choice.
-
-Would you like help implementing RBAC/ABAC in a specific tech stack like **Node.js (NestJS, Express)** or **Python (Django, FastAPI)**? 🚀
+> If you are building an enterprise application, **RBAC** is a good starting point. If you need **dynamic access policies**, **ABAC** is the better choice.
