@@ -170,12 +170,14 @@ Git offers three main strategies for integrating changes from one branch to anot
     
 ### 1. Git Merge
 ![alt text](https://miro.medium.com/v2/resize:fit:720/format:webp/0*qS37ldEO_QdD4OLU.png)
+
 — Merge integrates the entire history of one branch into another, including all the individual commits from the feature branch. It creates a new commit on the target branch, known as a “merge commit.”
 — This strategy is simple and easy to understand. It’s commonly used, especially for updating feature branches that are shared among team members.
 — However, the history becomes cluttered with merge commits, and debugging with “git bisect” can be more challenging due to the extra commits.
 
 ### 2. Git Rebase
 ![alt text](https://miro.medium.com/v2/resize:fit:720/format:webp/0*W28uicsv40QTx7vx.png)
+
 — Rebase rewinds the commits from the feature branch and replays them on top of the latest commit from the target branch. It creates new commit hashes for each commit in the feature branch.
 — It results in a cleaner commit history since it avoids merging commits. However, if the feature branch is shared with others, it’s generally not recommended as it can lead to broken repositories for others.
 — Rebase helps identify conflicts sooner, as they are resolved while replaying the changes onto the target branch.
@@ -183,6 +185,7 @@ Git offers three main strategies for integrating changes from one branch to anot
 
 ### 3. Git Squash
 ![alt text](https://miro.medium.com/v2/resize:fit:720/format:webp/0*W28uicsv40QTx7vx.png)
+
 — Squash combines all the individual commits from the feature branch into a single commit with a new commit message. It doesn’t carry over the commit history from the feature branch.
 — This strategy is useful when you want to merge the feature branch changes as a single commit, making it easier to track and find changes if needed.
 — Squash is typically used in combination with `Merge` or `Rebase`.
@@ -200,3 +203,9 @@ Rebase
 
 Squash
 — Use Squash when merging feature branch changes into the target branch. It creates a single commit for all the changes, making it easier to track.
+
+### Tips 💡
+1. Always use `git pull --rebase` first when the remote  branch is ahead of your local commit.
+- if it works... your work is done, git merges and rebases your commit on top of the recent commit.
+- if there's merge conflicts do `git rebase --abort` to stop the merging and rebasing.
+- do a simple `git pull` and resolve the merge conflicts and finally push the changes
