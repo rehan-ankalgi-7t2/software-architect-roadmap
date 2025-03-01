@@ -1,21 +1,19 @@
-Before Redux Toolkit was introduced, Redux state management in React applications followed a more manual and boilerplate-heavy approach. Here’s a breakdown of how Redux state management worked with Redux and Redux-Saga before Redux Toolkit:
-
+Before Redux Toolkit was introduced, Redux state management in React applications followed a more manual and boilerplate-heavy approach. Here’s a breakdown of how Redux state management worked with **Redux and Redux-Saga** before Redux Toolkit:
 
 ---
 
-1. Install Dependencies
-
+## **1. Install Dependencies**
+```bash
 npm install redux react-redux redux-saga
-
+```
 
 ---
 
-2. Create Redux Actions
-
+## **2. Create Redux Actions**  
 Actions represent events that trigger state updates.
 
-actions.js
-
+### `actions.js`
+```js
 // Action Types
 export const FETCH_DATA_REQUEST = 'FETCH_DATA_REQUEST';
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
@@ -25,16 +23,15 @@ export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
 export const fetchDataRequest = () => ({ type: FETCH_DATA_REQUEST });
 export const fetchDataSuccess = (data) => ({ type: FETCH_DATA_SUCCESS, payload: data });
 export const fetchDataFailure = (error) => ({ type: FETCH_DATA_FAILURE, payload: error });
-
+```
 
 ---
 
-3. Create Redux Reducer
-
+## **3. Create Redux Reducer**  
 Reducers specify how the state changes in response to actions.
 
-reducer.js
-
+### `reducer.js`
+```js
 import { FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE } from './actions';
 
 const initialState = {
@@ -57,16 +54,15 @@ const dataReducer = (state = initialState, action) => {
 };
 
 export default dataReducer;
-
+```
 
 ---
 
-4. Create Redux-Saga Middleware
-
+## **4. Create Redux-Saga Middleware**  
 Sagas handle side effects such as API calls asynchronously.
 
-sagas.js
-
+### `sagas.js`
+```js
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { FETCH_DATA_REQUEST, fetchDataSuccess, fetchDataFailure } from './actions';
 
@@ -92,16 +88,15 @@ function* watchFetchDataSaga() {
 }
 
 export default watchFetchDataSaga;
-
+```
 
 ---
 
-5. Setup Redux Store with Saga Middleware
-
+## **5. Setup Redux Store with Saga Middleware**  
 The store combines reducers and applies middleware for Redux-Saga.
 
-store.js
-
+### `store.js`
+```js
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import dataReducer from './reducer';
@@ -114,16 +109,15 @@ const store = createStore(dataReducer, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(watchFetchDataSaga);
 
 export default store;
-
+```
 
 ---
 
-6. Provide Store to React App
-
+## **6. Provide Store to React App**
 Wrap your application with the Redux provider.
 
-index.js
-
+### `index.js`
+```js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -136,16 +130,15 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
+```
 
 ---
 
-7. Connect Redux State in React Component
+## **7. Connect Redux State in React Component**
+Use `useSelector` to access state and `useDispatch` to trigger actions.
 
-Use useSelector to access state and useDispatch to trigger actions.
-
-App.js
-
+### `App.js`
+```js
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDataRequest } from './actions';
@@ -173,29 +166,17 @@ const App = () => {
 };
 
 export default App;
-
+```
 
 ---
 
-Summary
+## **Summary**
+1. **Actions** - Define constants and action creators.
+2. **Reducer** - Handle state updates based on actions.
+3. **Saga Middleware** - Use `redux-saga` to manage async API calls.
+4. **Store** - Create Redux store and apply saga middleware.
+5. **React Component** - Connect Redux store with `useSelector` and `useDispatch`.
 
-1. Actions - Define constants and action creators.
-
-
-2. Reducer - Handle state updates based on actions.
-
-
-3. Saga Middleware - Use redux-saga to manage async API calls.
-
-
-4. Store - Create Redux store and apply saga middleware.
-
-
-5. React Component - Connect Redux store with useSelector and useDispatch.
-
-
-
-This method, though effective, required a lot of boilerplate code. Redux Toolkit simplifies this process by reducing boilerplate, improving structure, and integrating createSlice and createAsyncThunk for async logic.
+This method, though effective, required a lot of boilerplate code. Redux Toolkit simplifies this process by reducing boilerplate, improving structure, and integrating `createSlice` and `createAsyncThunk` for async logic.
 
 Would you like to see a comparison with Redux Toolkit?
-
