@@ -311,3 +311,248 @@ Summary
 
 Would you like a real-world example or practice exercises next?
 
+
+---
+Real-World API Data Fetching in Dart (Async Programming Example)
+
+When working with real-world applications, fetching data from an API (e.g., weather, user profiles, or news) is a common task. This example demonstrates how to make HTTP requests asynchronously in Dart using the http package.
+
+
+---
+
+1. Setup: Install the HTTP Package
+
+To fetch data from an API in Dart, you need the http package.
+
+If you're using Dart CLI, run:
+
+dart pub add http
+
+If you're using Flutter, add this to pubspec.yaml:
+
+dependencies:
+  http: ^0.13.6
+
+
+Then run:
+
+flutter pub get
+
+
+---
+
+2. Fetching API Data Using async-await
+
+This example fetches user data from a public API (https://jsonplaceholder.typicode.com/users).
+
+Example: Fetching and Displaying User Data
+
+import 'dart:convert';  
+import 'package:http/http.dart' as http;  
+
+// Function to fetch user data from API
+Future<void> fetchUsers() async {
+  final url = Uri.parse("https://jsonplaceholder.typicode.com/users");
+
+  try {
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      List<dynamic> users = jsonDecode(response.body);
+      print("User Data:");
+      for (var user in users) {
+        print("Name: ${user['name']}, Email: ${user['email']}");
+      }
+    } else {
+      print("Failed to load users. Status code: ${response.statusCode}");
+    }
+  } catch (e) {
+    print("Error: $e");
+  }
+}
+
+void main() {
+  print("Fetching users...");
+  fetchUsers();
+}
+
+Output (Example)
+
+Fetching users...
+User Data:
+Name: Leanne Graham, Email: Sincere@april.biz
+Name: Ervin Howell, Email: Shanna@melissa.tv
+Name: Clementine Bauch, Email: Nathan@yesenia.net
+...
+
+
+---
+
+3. Fetching API Data with Stream (Real-time Data)
+
+In some cases, data is continuously updated (e.g., stock prices, weather updates). You can use Streams for real-time updates.
+
+Example: Fetching API Data Every 5 Seconds
+
+import 'dart:convert';  
+import 'dart:async';  
+import 'package:http/http.dart' as http;  
+
+Stream<List<dynamic>> fetchUsersPeriodically() async* {
+  while (true) {
+    final url = Uri.parse("https://jsonplaceholder.typicode.com/users");
+    
+    try {
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        List<dynamic> users = jsonDecode(response.body);
+        yield users; // Emit the user list as a stream event
+      } else {
+        print("Failed to fetch data. Status: ${response.statusCode}");
+      }
+    } catch (e) {
+      print("Error: $e");
+    }
+
+    await Future.delayed(Duration(seconds: 5)); // Fetch every 5 seconds
+  }
+}
+
+void main() {
+  print("Starting user data stream...");
+  
+  fetchUsersPeriodically().listen((users) {
+    print("\nUpdated User Data:");
+    for (var user in users.take(3)) { // Limit to first 3 users for display
+      print("Name: ${user['name']}, Email: ${user['email']}");
+    }
+  });
+}
+
+Output (Updates Every 5 Seconds)
+
+Starting user data stream...
+
+Updated User Data:
+Name: Leanne Graham, Email: Sincere@april.biz
+Name: Ervin Howell, Email: Shanna@melissa.tv
+Name: Clementine Bauch, Email: Nathan@yesenia.net
+
+(5 seconds later...)
+
+Updated User Data:
+Name: Leanne Graham, Email: Sincere@april.biz
+Name: Ervin Howell, Email: Shanna@melissa.tv
+Name: Clementine Bauch, Email: Nathan@yesenia.net
+...
+
+This continuously fetches user data every 5 seconds.
+
+yield emits data to all listeners.
+
+
+
+---
+
+4. Handling Errors Properly
+
+When making API calls, network issues or server failures may occur. Proper error handling ensures smooth user experience.
+
+Example: Handling API Errors
+
+Future<void> fetchUser(int id) async {
+  final url = Uri.parse("https://jsonplaceholder.typicode.com/users/$id");
+
+  try {
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      var user = jsonDecode(response.body);
+      print("User: ${user['name']}, Email: ${user['email']}");
+    } else if (response.statusCode == 404) {
+      print("User not found.");
+    } else {
+      print("Server error: ${response.statusCode}");
+    }
+  } catch (e) {
+    print("Network error: $e");
+  }
+}
+
+void main() {
+  fetchUser(1);
+  fetchUser(999); // Non-existent user (404)
+}
+
+Output
+
+User: Leanne Graham, Email: Sincere@april.biz
+User not found.
+
+
+---
+
+5. Combining Multiple API Calls Using Future.wait()
+
+Sometimes, you need to make multiple API requests simultaneously.
+
+Example: Fetching Multiple Users at the Same Time
+
+Future<List<dynamic>> fetchUser(int id) async {
+  final url = Uri.parse("https://jsonplaceholder.typicode.com/users/$id");
+  final response = await http.get(url);
+  
+  if (response.statusCode == 200) {
+    return jsonDecode(response.body);
+  } else {
+    throw Exception("Failed to load user $id");
+  }
+}
+
+void main() async {
+  try {
+    List<dynamic> users = await Future.wait([
+      fetchUser(1),
+      fetchUser(2),
+      fetchUser(3),
+    ]);
+
+    print("Users Fetched:");
+    for (var user in users) {
+      print("${user['name']} - ${user['email']}");
+    }
+  } catch (e) {
+    print("Error: $e");
+  }
+}
+
+Output
+
+Users Fetched:
+Leanne Graham - Sincere@april.biz
+Ervin Howell - Shanna@melissa.tv
+Clementine Bauch - Nathan@yesenia.net
+
+Future.wait() fetches all users simultaneously, reducing API response time.
+
+
+
+---
+
+Summary
+
+
+---
+
+Next Steps
+
+Want a Flutter version of API fetching?
+
+Need an API CRUD example (GET, POST, PUT, DELETE)?
+
+Want to implement caching for API responses?
+
+
+Let me know how you’d like to proceed!
+
