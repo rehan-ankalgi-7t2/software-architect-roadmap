@@ -112,3 +112,7 @@ For most applications:
 - Add **Replication** for **read-heavy** workloads.
 - Use **Sharding** for **write-heavy** and **large-scale** applications.
 - Use **caching** and **load balancing** to optimize performance.
+
+---
+
+# 
